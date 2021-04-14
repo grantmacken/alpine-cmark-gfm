@@ -31,6 +31,10 @@ build:
 
 .PHONY: run
 run:
+	@docker run --rm --interactive \
+  docker.pkg.github.com/$(REPO_OWNER)/$(REPO_NAME)/$(PKG_NAME):$(CMARK_VER) --help
 	@echo 'hello world' | docker run --rm --interactive \
   docker.pkg.github.com/$(REPO_OWNER)/$(REPO_NAME)/$(PKG_NAME):$(CMARK_VER)
+	@cat test/min.md | docker run --rm --interactive \
+  docker.pkg.github.com/$(REPO_OWNER)/$(REPO_NAME)/$(PKG_NAME):$(CMARK_VER) -t html --validate-utf8  --github-pre-lang
 
