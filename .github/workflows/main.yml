@@ -19,7 +19,5 @@ jobs:
       - name: Push to Dockerhub and Github Packages
         run: |
           source .env
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USER }} --password-stdin 
-          docker push ${DOCKER_IMAGE}:${CMARK_VER}
           echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username ${REPO_OWNER} --password-stdin
           docker push docker.pkg.github.com/${REPO_OWNER}/${REPO_NAME}/${PKG_NAME}:${CMARK_VER}
